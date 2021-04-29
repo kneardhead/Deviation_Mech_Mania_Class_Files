@@ -1,0 +1,321 @@
+\documentclass[9pt ]{memoir}
+\usepackage[]{tikz}
+\usepackage[]{graphicx}
+\usepackage[]{float} 
+\usepackage[]{import}
+%usetheme{Rochester}
+\usepackage{graphicx}
+\usepackage[]{amsthm,amssymb,amsmath}
+
+
+%
+%usepackage[darkblue]{ahsan}
+%usepackage[icmcb]{mycolors} 
+\usepackage{verbatim}
+
+
+    \usepackage{thmtools, listings, chngcntr}
+    \usepackage[most]{tcolorbox}
+    \usepackage{ifthen, xifthen}
+    \usepackage[framemethod=TikZ]{mdframed}
+
+%This code is made for Itemized portions
+\newenvironment{myitemize}{\begin{itemize}}{\end{itemize}}
+    \tcolorboxenvironment{myitemize}{blanker, before skip=6pt,after skip=6pt,
+borderline west={2mm}{0pt}{red}} 
+
+    \declaretheoremstyle[ headfont=\bfseries\color{black}, notebraces={[}{]},
+    notefont=\normalfont\sffamily, headpunct={. }, spaceabove=10pt,
+    spacebelow=10pt, qed=\qedsymbol, bodyfont=\color{black}, ]{solutionstyle}
+
+\tcolorboxenvironment{solution.}{ coltext=solC!90!pageC, tile, breakable,
+colback=pageC, top=0pt, left=.7em, right=.7em, before skip=0pt,after
+skip=35pt,borderline west={.1em}{0pt}{solC}, }
+\declaretheorem[style=solutionstyle]{solution.} \newtheorem*{solution.*}{Sl}
+
+
+        \declaretheoremstyle[ headfont=\bfseries\color{Olive Green},
+        headpunct={.}, postheadspace={7pt}, spaceabove=12pt,
+        bodyfont=\normalfont, spacebelow=12pt, notebraces={(}{)},
+        notefont=\color{probC}, ]{ideastyle}
+
+
+\tcolorboxenvironment{idea}{ tile, breakable,colback=defBgC, colframe=probBgC,
+coltext=fgC, left=1em,before skip=12pt,after skip=30pt, borderline
+west={2mm}{0pt}{gray}, } \declaretheorem[style=ideastyle]{idea}
+\newtheorem*{idea*}{id}
+
+
+        \declaretheoremstyle[ headfont=\bfseries\color{probC}, headpunct={.},
+        postheadspace={7pt}, spaceabove=12pt, bodyfont=\normalfont,
+        spacebelow=10pt, notebraces={(}{)}, notefont=\color{probC},
+        ]{problemstyle}
+
+
+\tcolorboxenvironment{problem.}{ tile, breakable,colback=probBgC,
+colframe=probBgC, coltext=fgC, left=1em,before skip=12pt,after skip=30pt, }
+\declaretheorem[style=problemstyle]{problem.} \newtheorem*{problem.*}{Pr}
+
+         \newcommand{\solu}[1]{ \begin{solution.} #1 \end{solution.} }
+         \newcommand{\prob}[1]{ \begin{problem.} #1 \end{problem.}}
+
+        \newcommand{\id}[1]{ \begin{idea} #1 \end{idea} }
+%_{_{_{_{_}}}} Macros are here 
+\newcommand{\fig}[3]{ \begin{figure} \centering \includegraphics[width=
+#1\textwidth]{#2} \caption{#3}  \end{figure}} 
+%
+\newcommand{\draw}[3]{ \begin{figure}[hbt!] \centering
+ \fontsize{35pt}{20pt}\selectfont \resizebox{#1 \textwidth}{!}{
+\import{}{#2.pdf_tex}}\caption{#3} \label{#3} \end{figure} }
+%_{_{_{_{}}}}}
+
+\newcommand{\sides}[2]{ \begin{minipage}{0.5\textwidth} #1
+    \end{minipage}\hfill%
+\begin{minipage}{0.5\textwidth} #2 \end{minipage} }
+\usepackage[]{xcolor}
+ \usepackage[]{pdfpages}
+ \usepackage[]{transparent}
+ \usepackage[]{xifthen}
+\newcommand{\incfig}[1]{ 
+\fontsize{ 35pt}{ 20pt}\selectfont \resizebox{0.6\textwidth}{!}{ 
+\import{./figures/}{#1.pdf_tex} } 
+} 
+
+\title{Day 1} \author{Ahmed Saad Sabit} \date{\today} 
+
+
+
+\begin{document}
+
+% this is the title page.
+\begin{frame}{Intro} \titlepage  \end{frame}
+
+
+\begin{frame}
+    {Problem 1: Find Equivalent Spring 
+    Constant}
+    \prob{We have two spring of $k_1$ and $k_2$ constant. IF we join them in series, find the equivalent $k$ for the system.}
+\end{frame}
+
+
+\begin{frame}
+    {Spring}
+    {For a spring, if we pull it with $F$, 
+        \[ F = k \Delta x \]
+    }{ \draw{0.9}{prob1-1}{}} 
+\end{frame}
+
+\begin{frame}
+    {How spring work, a spring pulls the both sides of it's ends with the same force.}{\draw{0.9}{prob1-2}{}}
+\end{frame}
+
+
+\begin{frame}
+    {The visual of the problem}
+    \draw{0.6}{prob1-3}{}
+\end{frame}
+
+
+\begin{frame}
+    {Force balance conditions, system is going to be at rest}
+    \draw{0.7}{prob1-4}{} 
+\end{frame}
+    
+
+\begin{frame}
+    \begin{itemize}
+        \item The two spring together is as a single spring.
+        \item So, the ends of the whole big spring will pull with $ F$ and $ F$ at both sides.
+        \item $k_1$ spring will pull it's two ends with $F_1$ and $k_2$ will pull with $F_2$.
+    \end{itemize}
+    
+\end{frame}
+
+
+\begin{frame}
+    {Solving}
+
+        Note that, two springs expand $\Delta x_1$ and $\Delta x_2$. And total expanding, 
+        \[ \Delta x = \Delta x_1 + \Delta x_2\]
+       And this is clear, 
+       \[ F_1 = k_1 \Delta x_1  
+       \quad F_2 = k_2 \Delta x_2 \]
+    {
+
+       Now, the whole spring system is at rest, so force is balanced at every points in the spring. That's why, All the pair forces cancel out.
+        \[ F = F_1 \quad F_1 = F_2 \quad F = F_2 \]
+        This means, 
+        $ F_1 = F_2 $
+        Thus, \[ k_1 \Delta x_{1} = k_2 \Delta x_2 \]
+        Solves to, \[ \Delta x_{2} = \frac{k_1}{k_2} \Delta x_1 \]
+    }{\draw{1}{prob1-4}{}}
+\end{frame}
+
+
+\begin{frame}
+    {Solution to $1$ }
+    Now, we applied a total force $F$, then total length expansion $\Delta x$ and thus, equivalent $k$ is, 
+    \[ \frac{F}{\Delta x} = k \]
+    Because $F = F_1 = F_2$, 
+    \[ \frac{k_1 \Delta x_1}{\Delta x_1 + \Delta x_2} = k \]
+   \[ \frac{k_1 \Delta x_1}{ \Delta x_1 + \frac{k_1}{k_2} \Delta x_1 } = k \]
+   Solving this, we get, 
+  \[ k = \frac{k_1 k_2 }{k_1 + k_2} \]
+   Answer, 
+   \[ \boxed{ \frac{1}{k} = \frac{1}{k_1} + \frac{1}{k_2} = \sum_{i} \frac{1}{k_i}} \]
+   
+   
+\end{frame}
+
+
+\begin{frame}
+    {Center of Mass}
+    Let us have two masses $m_1$ and $m_2$. They are located along $x_1 $ and $x_2$. So, their center of mass will be at, 
+    
+    \[ x_c = \frac{m_1x_1 + m_2 x_2 }{m_1 + m_2} \]
+    If you take a derivative of  this with respect to time, 
+
+    \[ \frac{\mathrm{d} }{\mathrm{d} t} x_c = \frac{\mathrm{d} }{\mathrm{d} t} \left(\frac{m_1x_1 + m_2 x_2 }{m_1 + m_2}\right) \] 
+    We find, 
+    \[ v_c = \frac{m_1 v_1 + m_2 v_2}{ m_1 + m_2} \]
+    That is, 
+    \[ \left( m_1 + m_2 \right) v_c = m_1 v_1 + m_2 v_2 \]
+    And is consistent with the momentum idea we discussed in day 2. 
+\end{frame}
+
+\begin{frame}
+    {Center of Mass along one axis}
+    \draw{0.7}{com}{}
+\end{frame}
+
+\begin{frame}
+    {Vectorally}
+    \[ \vec r = \frac{m_1 \vec r_1 + m_2 \vec r_2 }{m_1 + m_2} \]
+\pause
+That means, 
+\[ x_c =   \frac{m_1x_1 + m_2 x_2 }{m_1 + m_2} \]
+\[ y_c =   \frac{m_1y_1 + m_2 y_2 }{m_1 + m_2} \]
+\[ z_c =  \frac{m_1z_1 + m_2 z_2 }{m_1 + m_2}  \]
+\pause
+Now if you take small portions of masses, and want to do it continuously,
+\[ x_c = \frac{\int x \ \mathrm{d} m}{M} \]
+
+\end{frame}
+
+
+\begin{frame}
+    {Collition and Center of Mass}
+    If there is no external force working, then the center of mass will not move from it's place, or it will keep moving in a constant speed.  
+    {
+    \prob{Suppose there is a mass $M$ that is resting in it's position, and another mass $m$ is moving towards it at $v_m$ speed. Now if they collide, find each of their speed after collision. All motion takes place in $x$ axis. There is no loss of energy.}}{\draw{1}{prob2-1}{}} 
+\end{frame}
+
+\begin{frame}
+    {Momentum Conservation solution}
+    \[ mv = Mv_M + mv_m \]
+   \[ \frac{1}{2} m v^2 = \frac{1}{2} M v_M^2 + \frac{1}{2} mv_m \]
+   Number of unknown, $v_M , v_m$, \\
+   Number of equation, $2$.
+\end{frame}
+
+\begin{frame}
+    {Postpone this problem for now.}
+    Think about another problem where the center of mass is not moving. Thus, we can have this diagram.
+    \draw{0.6}{prob2-2}{}
+    Here, the center of mass will stay where it is, and unless no external force acts there will not be any movement. \textbf{Now how would the motion look after the masses have collided?} The center of mass won't move anyway. 
+\end{frame}
+
+
+\begin{frame}
+    \draw{0.4}{prob2-2}{}
+    Because center of mass not moving, 
+    \[ 0 = M v_M - mv_m \]
+    After collision, the masses should move away. Say at $v_M', v_m'$ speed.
+    \[ 0 = -M v_M' + mv_m' \]
+   Energy is conserved too. What if $v_M = - v_M'$? and $v_m = - v_m'$? This is exactly the opposite motion and the center of mass is kept in it's position too.  
+\end{frame}
+
+\begin{frame}
+    {Reasons}
+    \begin{itemize}
+        \item If energy is conserved, then the where will the speed of the particles go? 
+        \item If one particle get extra speed from other particle, then the center of mass will not be in it's position as it is.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    {After collision, motion is just reveresed in respect to the Center of Mass}
+    \draw{0.4}{prob2-2}{}
+    \draw{0.4}{prob2-3}{In the frame of Center of Mass in rest, the speed is just reversed after collision, if energy is conserved.}
+\end{frame}
+
+\begin{frame}
+    \id{The speed of particles after collision is just reversed in the Center of Mass frame, if the collision doesn't lose energy.}
+    Not losing energy means \textbf{Elastic Collsion}. And Losing is \textbf{Inelastic}. 
+\end{frame}
+
+\begin{frame}
+    {Back to the problem}
+    \prob{Suppose there is a mass $M$ that is resting in it's position, and another mass $m$ is moving towards it at $v_m$ speed. Now if they collide, find each of their speed after collision. All motion takes place in $x$ axis. There is no loss of energy.\pause}
+    {\begin{small}Let us move in the frame of center of mass, speed of center of mass is, 
+        \[ v_c = \frac{m v_m}{M + m} \]
+        Relative speed of anything, 
+        \[ \text{Relative Speed} =\text{ Actual Speed} -\text{ Frame Speed} \]
+        \[ u_m = v_m - v_c = v_m - \frac{mv_m}{M + m} = \frac{M v_m}{M + m} \]
+       \[ u_M = v_M - v_c = 0 - \frac{mv_m}{M + m} =  - \frac{mv_m}{M + m}  \]
+        
+\end{small}} 
+\end{frame}
+
+\begin{frame}
+    {After the collision}
+    \[ v_m \to -v_m \]
+    \[ v_M \to -v_M \]
+    Thus, after collision,
+    \[ u_m' = - \frac{M v_m}{M + m}  \]
+    \[ u_M ' = \frac{mv_m}{M+m} \]
+    Now, we can use the equation for relative speed, 
+    
+        \[ \text{Relative Speed} =\text{ Actual Speed} -\text{ Frame Speed} \]
+        \[ \text{Relative Speed} + \text{Frame Speed} = \text{Actual Speed} \]
+    
+        \[ v_m'  = -\frac{Mv_m}{M+m} +   \frac{mv_m}{M+m } = \frac{\left( m - M \right) v_m}{M + m}       \]
+        \[ v_M' =  \frac{mv_m}{M+m}  +  \frac{mv_m}{M+m} =  \frac{2mv_m}{M+m}   \]
+        
+\end{frame}
+\begin{frame}
+    {Solution to 2nd problem}
+    \begin{align*}
+        v_m' &= \frac{\left( m - M \right) v_m}{M + m} \\
+        v_M' &=  \frac{2mv_m}{M+m} 
+    \end{align*}
+    
+\end{frame}
+
+
+\begin{frame}
+    \textbf{Theorem :   } In a $1-D$ Elastic collision, the relative velocity of two particles after a collsion is the negative of the relative velocity before the collision, in the Center of Mass frame. \\
+    \textbf{Proof :} This is in Morin $4.7$, I will upload the text book in the Classroom, you are requested to check that. Basic idea is using energy and momentum conservation together.
+\end{frame}
+
+
+
+
+
+
+
+
+
+\begin{frame}
+    \[ \frac{\mathrm{d} f}{\mathrm{d} x} \]
+     \[ \frac{\mathrm{d} }{\mathrm{d} } \]
+     \[ \begin{pmatrix} 2 & 2 & 2 \\ 
+     2 & 4 & 3 \\
+ 2 & 4 & 2\end{pmatrix}  \]
+     \[ \frac{1}{2} \sqrt{2x^2+2^3}  \]
+      
+\end{frame}
+
+
+
+\end{document}

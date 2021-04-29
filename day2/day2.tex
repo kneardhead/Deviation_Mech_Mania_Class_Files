@@ -1,0 +1,712 @@
+\documentclass[9pt,serif]{beamer}
+\usepackage[]{tikz}
+\usepackage[]{graphicx}
+\usepackage[]{float} 
+\usepackage[]{import}
+\usetheme{Rochester}
+\usepackage{graphicx}
+\usepackage[]{amsthm,amssymb,amsmath}
+
+%
+
+\usepackage[icmcb]{mycolors} 
+\usepackage{verbatim}
+
+
+    \usepackage{thmtools, listings, chngcntr}
+    \usepackage[most]{tcolorbox}
+    \usepackage{ifthen, xifthen}
+    \usepackage[framemethod=TikZ]{mdframed}
+
+%This code is made for Itemized portions
+\newenvironment{myitemize}{\begin{itemize}}{\end{itemize}}
+    \tcolorboxenvironment{myitemize}{blanker, before skip=6pt,after skip=6pt,
+borderline west={2mm}{0pt}{red}} 
+
+    \declaretheoremstyle[ headfont=\bfseries\color{black}, notebraces={[}{]},
+    notefont=\normalfont\sffamily, headpunct={. }, spaceabove=10pt,
+    spacebelow=10pt, qed=\qedsymbol, bodyfont=\color{black}, ]{solutionstyle}
+
+\tcolorboxenvironment{solution.}{ coltext=solC!90!pageC, tile, breakable,
+colback=pageC, top=0pt, left=.7em, right=.7em, before skip=0pt,after
+skip=35pt,borderline west={.1em}{0pt}{solC}, }
+\declaretheorem[style=solutionstyle]{solution.} \newtheorem*{solution.*}{Sl}
+
+
+        \declaretheoremstyle[ headfont=\bfseries\color{Olive Green},
+        headpunct={.}, postheadspace={7pt}, spaceabove=12pt,
+        bodyfont=\normalfont, spacebelow=12pt, notebraces={(}{)},
+        notefont=\color{probC}, ]{ideastyle}
+
+
+\tcolorboxenvironment{idea}{ tile, breakable,colback=defBgC, colframe=probBgC,
+coltext=fgC, left=1em,before skip=5pt,after skip=5pt, borderline
+west={2mm}{0pt}{gray}, } \declaretheorem[style=ideastyle]{idea}
+\newtheorem*{idea*}{id}
+
+
+        \declaretheoremstyle[ headfont=\bfseries\color{probC}, headpunct={.},
+        postheadspace={7pt}, spaceabove=12pt, bodyfont=\normalfont,
+        spacebelow=10pt, notebraces={(}{)}, notefont=\color{probC},
+        ]{problemstyle}
+
+
+\tcolorboxenvironment{problem.}{ tile, breakable,colback=probBgC,
+colframe=probBgC, coltext=fgC, left=1em,before skip=12pt,after skip=30pt, }
+\declaretheorem[style=problemstyle]{problem.} \newtheorem*{problem.*}{Pr}
+
+         \newcommand{\solu}[1]{ \begin{solution.} #1 \end{solution.} }
+         \newcommand{\prob}[1]{ \begin{problem.} #1 \end{problem.}}
+
+        \newcommand{\id}[1]{ \begin{idea} #1 \end{idea} }
+%_{_{_{_{_}}}} Macros are here 
+\newcommand{\fig}[3]{ \begin{figure} \centering \includegraphics[width=
+#1\textwidth]{#2} \caption{#3}  \end{figure}} 
+%
+\newcommand{\draw}[3]{ \begin{figure}[hbt!] \centering
+ \fontsize{35pt}{20pt}\selectfont \resizebox{#1 \textwidth}{!}{
+\import{}{#2.pdf_tex}}\caption{#3} \label{#3} \end{figure} }
+%_{_{_{_{}}}}}
+
+\newcommand{\sides}[2]{ \begin{minipage}{0.5\textwidth} #1
+    \end{minipage}\hfill%
+\begin{minipage}{0.5\textwidth} #2 \end{minipage} }
+\usepackage[]{xcolor}
+ \usepackage[]{pdfpages}
+ \usepackage[]{transparent}
+ \usepackage[]{xifthen}
+\newcommand{\incfig}[1]{ 
+\fontsize{ 35pt}{ 20pt}\selectfont \resizebox{0.6\textwidth}{!}{ 
+\import{./figures/}{#1.pdf_tex} } 
+} 
+
+\title{Using Conservation Laws} \author{Ahmed Saad Sabit} \date{\today} 
+
+
+
+\begin{document}
+
+% this is the title page.
+\begin{frame}{Intro} \titlepage  \end{frame}
+
+
+
+\begin{frame}{ Introduction to Momentum} 
+    Momentum defines some mechanical characteristics. 
+    \[ \vec p = m \vec v  \]
+    For a constant mass body, if we take derivative, 
+    \[ \frac{\mathrm d p}{\mathrm d t} = m \frac{\mathrm d v}{ \mathrm d t} = F \]
+    So, rate of change of momentum is force.        
+\end{frame}
+
+
+
+
+
+\begin{frame}
+    { Example of momentum}
+    Assume two blocks of same mass.\\
+    You need to push the blocks.\\
+    One block will have a speed of $10 \ \frac{m}{s}$, (say) and another shall have $100 \ \frac{m}{s}$, which one has greater momentum?\\ \pause
+    Of course, the one with same mass with higher speed. \pause
+    The more it's momentum, the more force we need to give it. 
+\end{frame}
+
+
+
+
+\begin{frame}
+    { Momentum and Center of Mass}
+    Center of Mass is the so called ``Average position" of a system. \\ \pause
+    \begin{itemize}
+        \item The total momentum of a system is equal to the momentum of the Center of Mass.  \pause
+        \item This means mathematically, suppose we have 2 masses $m_1 $ and $m_2$, let they have velocity $\vec v_1$ and $\vec v_2$, total momentum is, $\vec p = m_1 \vec v_1 + m_2 \vec v_2$, this total momentum is equal to the momentum of the center of mass.  \pause
+        \item Total mass is obviously equal to the center of mass, hence, $ m_{ COM} = m_1 + m_2  $.  \pause
+        \item Thus, total momentum being equal to momentum of center of mass, $m_{ COM} v_{ COM} = m_1 \vec v_1 + m_2 \vec v_2  $, which is, \pause
+        \item $(m_1 + m_2) \vec{ v}_{ COM}  = m_1 \vec v_1 + m_2 \vec v_2 $.
+    \end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{ Momentum if there is no external force} 
+    Suppose in a system there are masses, but there is no external source of \emph{Force}. Then by definition,  
+    \[ \frac{\mathrm d p}{\mathrm d t} = m \frac{\mathrm d v}{ \mathrm d t} = F \]
+    Now, $F=0$, thus, \[ \frac{dp}{dt}=0 \] that is $p$ is a constant. 
+    As you know, \[ \frac{d}{dt} C =0 \]
+    Where if $C$ is a constant that doesn't vary with time. Now, if our system starts from $rest$, then there is no momentum either, that means,  $p$ is $0$ for initial rest. \\ \pause
+    If it happens that system starts from rest, then total momentum is zero. We will use these to solve problems later. 
+\end{frame}
+%
+%
+\begin{frame}
+    {The real force Equation}
+    \id{The real definition of Force is 
+        \[ \vec F= \frac{\mathrm d \vec p}{\mathrm d t} \]
+    And believe me this is much more useful than $\vec F = m \vec a$ sometimes} 
+\end{frame}
+
+\begin{frame}
+    {Very Quick Summary of Momentum}
+    \begin{myitemize}
+    \item $\vec p = m \vec v$ is momentum, which is \emph{Vector, and remember this!}\pause
+    \item The total momentum of a system $=$ Momentum of Center of Mass. \pause
+    \item If there is no external force, change of $\vec p$ momentum is zero, which means, the value of \textbf{momentum is constant}. \pause
+    \item The better formulation for $\vec F$orce is, 
+        \[ \vec F = \frac{\mathrm d \vec p}{\mathrm d t} \]
+    \item Momentum is a type of Conserved quantity in many problems. We can use this at your    
+    \end{myitemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+    {A small problem to show how $\vec p = m \vec v$ is used}
+    \sides{
+        \prob{ 
+            Suppose there is a ball (name first ball) that is moving in the $x$ axis in $v$ speed. And suppose another ball (name second ball) comes and hit the ball at $u$ speed, but a bit on the side, not center.\\ 
+            So the two balls move away in opposite directions and the angle the two trajectory make is $\alpha$ \emph{symmetrically} \\ 
+            We know that the first ball moves away with velocity $\vec v'$ and we perfectly know about it. \\
+
+        But we don't know anything about the seond ball velocity after collition. Find it.}}{ 
+    \draw{1}{prob4_1}{ 
+}}
+\end{frame}
+
+\begin{frame}
+    {Task for problem $4$}
+    We don't know the second ball speed, call it $u'$, we have to find it.
+\end{frame}
+
+\begin{frame}
+    {Clear what a vector conserved looks like}
+\sides{    $\vec p$ is conserved in component form, which is, \pause
+    \begin{align*}
+        m_1 u_x + m_2 v_x &= m_1 u'_x + m_2 v'_x \\
+        m_1 u_y + m_2 v_y &= m_1 u'_y + m_2 v'_y 
+    \end{align*}
+    For two particles that had initiall speed $u, v$ and then they turn $u', v'$ after a collition or something. \pause \\ 
+    Obviously if you have $\vec u$, then $u_x$ means, 
+    \[ u_x = u \cos \theta \]
+    \[ u_y = u \sin \theta \]
+    
+    Depending on the system.
+   Momentum will be conserved in the $x$ axis and $y$ axis separetely.  
+    }{ 
+    \begin{tikzpicture}
+        \centering
+    \draw[thin, dotted](0,0) -- (4.5,0);
+    \draw[thin, dotted](0,0) -- (0,4.5); 
+    \draw[-stealth, blue](0,0)  -- (3,4) node[above]{$\vec u$ };
+    \draw[-stealth, red](0,0) -- (0, 4)node[midway,below]{$u_y$}; 
+    \draw[-stealth, blue](0,0) -- (3,0)node[midway,right]{$u_x$ };
+\end{tikzpicture}        
+   } 
+    
+
+\end{frame}
+
+
+
+\begin{frame}
+    {Problem 4}
+    \sides{
+        Momentum is going to be conserved in this case, because there is no external source that is causing force into the balls. 
+
+        Momentum along $x$ axis is going to be conserved, 
+        \[ P_x = mu + mv = m\left( u + v \right)  \] 
+\pause
+        And initially there is no $y$ axis of momentum, hence, 
+         \[ P_y = 0 \]
+         \pause
+         \textbf{This is before collition}
+        }{
+    \draw{0.95}{prob4_1}{}}
+\end{frame}
+
+
+
+\begin{frame}
+    \sides{ 
+        Momentum of the ball's after collition, 
+        \[ P_x' = mv' \cos 30^{\circ} + mu' \cos 30^{\circ} \]
+        Note that we have to find $u'$. \\
+\pause
+        Momentum of the ball's along $y$ axis after the collition, 
+        \[ P_y' = mv' \sin 30^{\circ} - mu'\sin 30^{\circ} \] This above equation is solely caused because of the opposite direction of the $u'$ along $y$ axis relative to $v'$.
+    }{ \draw{0.95}{prob4_1}{}}
+\end{frame}
+
+
+
+\begin{frame}
+    {Problem 4 equation solving}    
+    \begin{small}    From the conservation of momentum, we know that the, 
+    \id{Momentum before and after collition is the same if no external force acts on the system     }, hence, 
+    \begin{align*}
+        P_x &= P_x' \\
+        P_y &= P_y '    
+    \end{align*}
+
+    This tell's us, 
+    \begin{align*}
+        m\left( v + u \right)  &= m \cos 30^{\circ} \left( v' + u' \right) \\
+        0 &= m \sin 30^{\circ} \left( v' - u' \right)  
+    \end{align*}
+Because this problem had some nice symmtry and $m_1 = m_2$ for the two balls, the solution is simple, we directly get, 
+   
+\[ \boxed{v' = u'} \]
+    We can also solve for $v'$ in terms of $v, u$. But information has already been given in the problem.
+\end{small}
+\end{frame}
+
+%
+%
+%
+%
+%
+%
+
+\begin{frame}
+    {Energy and Work}
+            Energy is like a currency, it increases if fed, decreases if used. \\
+        If you apply \emph{Work} to a system, then it's \emph{Energy} will increase. 
+        \[ W = \Delta E \]
+        Where work is equal to the change in system energy. \\
+        \textbf{For Example:} if you put Work on a block resting on a frictionless surface, it's Energy will increase. \\
+        \textbf{What energy?} It can be Kinetic energy, for which the Speed of the block increase. \\
+        \textbf{Otherwise} it can be Thermal energy for which the temperature Increase. 
+\end{frame}
+
+%
+%
+%
+%
+\begin{frame}
+    {Define Work}
+    \begin{small}    Let me be clear from the first minute. \\
+    Let us have a \textbf{system} that has no energy at first, 
+    \[ E =0 \]
+    Now, if you feed in $W$ amount of work, it will be, 
+    \[ W = \Delta E \]
+    This increase of Energy is exactly equal to work. (Remember this). \\
+    Now, 
+    \[ W = \Delta E = E_{final} - E_{initial} = E_{final} - 0 = E_{final} \]
+    Because the system had \textbf{No Energy}, thus, 
+    \[ W = E_{final} \] \end{small}
+    \id{So remember this, if a system starts from 0 energy, then the final energy is exactly equal to the work done}
+        
+\end{frame}
+    %
+%
+
+\begin{frame}
+    {Mathematical Definition of Work}
+    Work is defined to be, exactly, 
+    \[ W = \int_{a}^{b} \vec F \cdot \mathrm d \vec l \]
+    But I hope you don't need to use it now, stick with this simple definition, for a constant force, 
+    \[ W = F x \ \cos \theta \]
+    You will use integral form if $F$ is not constant in magnitude or it's direction changes.
+\end{frame}
+
+
+
+
+
+\begin{frame}
+    {Work is giving force of $F$ for $x$ distance}
+    \begin{small}    We are pushing a block with $F$ force along the $x$ axis for a distance $d$, then the work done, assumed $F$ stays constant, 
+    \[ W = F d \ \cos 0 = F d \] \pause
+    $\theta = 0$ because force is along the direction of movement. Now, because we are pushing it, from Newton's Second Law $F = ma$ there must be an \textbf{acceleration}. \\ \pause
+This means speed is increasing with time. Because $F = ma$, we can say, 
+\[ W = F d = \left( m a \right) d \]
+Now this can be solved a little more, as we know (from kinematics), \[ v^2 = 2 a d \]
+Hence, 
+\[ W = md \frac{v^2}{2d} = \frac{1}{2} m v^2 \] \pause
+So work done is $v$, which starts from $0$ to $v$. End because we started from $E=0$, this is also that, 
+$E _f = \frac{1}{2} mv^2$
+Don't know $v^2 = 2ad$? No problem, we have better formula. \end{small}
+\end{frame}
+
+
+
+\begin{frame}{Integrals look Cute for Kinetic Energy}
+    We just know for $E_i =0$ so, 
+    \[ E_f = W = \int_{}^{} F \cdot \mathrm d x   \]
+    We can solve this, 
+    \[ E_f = \int_{}^{}  m a \cdot \mathrm d x  \]
+    \[ E_f = \int m \ \frac{\mathrm d v}{\mathrm d t} \mathrm d x = \int 
+    m \mathrm d v \frac{\mathrm d x}{\mathrm d t} = \int m v  \ \mathrm d v\]
+    This is easy, 
+    \[ E_f = \int m v \ \mathrm d v = \frac{1}{2} mv^2 + C \]
+    For $E_i = 0$, $v = 0$, so, $C = 0$, thus, 
+    \[ E_f = \frac{1}{2 }m v^2 \]
+    This is kinetic Energy.
+\end{frame}
+
+\begin{frame}
+    {Other Energy} 
+    \sides{    If we pull something against the ground, the gravity pulls it down.
+            We have to lift up with slightly more force than gravity pointing up to lift it, 
+            \[ W= \int mg \cdot dh = mgh \]
+            This stores potential energy of gravity in the mass. After lifting $h$ height, and letting go that mass $m$ will turn to $\frac{1}{2 }mv^2$ as it falls.
+            }{ \draw{0.9}{work_grav}{}
+    }  
+\end{frame}
+    
+%
+%
+%
+\begin{frame}
+    {Standard Pendulum}
+    \draw{0.8}{pend_1}{}
+\end{frame}
+%
+\begin{frame}
+    {Standard Pendulum}
+    \draw{0.8}{pend_2}{}
+\end{frame}
+
+%
+\begin{frame}
+    {Standard Pendulum}
+    \draw{0.8}{pend_3}{}
+\end{frame}
+
+\begin{frame}
+    {Problem 5: Using Energy and Pendulum }
+    \sides{
+        \prob{
+    String $l$ length hangs a rod at the end of length $l$. The two ceiling and ground has distance $H$. There is no friction so, $\mu =0$ for all case. Now, if the rod starts to move and slide, find the \emph{maximum speed} of the rods center of mass. Mass of rod is $m$. }}{
+\draw{0.95}{prob5_1}{}} 
+\end{frame}
+
+
+
+\begin{frame}
+    {Problem 5: Analysis}
+    \begin{myitemize}
+        
+\item    The string $l$ will always be taut (tight). And it will pivot at the top end and rotate using that as axis. \pause
+\item There is no motion initially, from the diagram, if $m$ cneter is $h$ above the ground, it has potential energy $mgh = mg \frac{1}{4} H$. \pause
+\item As the system falls down, there will be a pendulum like motion because of the string. \pause
+\item If the rod lowers down, it's potential energy decrease, this potential energy will chage will go to increase the kinetic energy (because total energy constant). \pause
+\item Maximum amount of energy will turn to kinetic energy if the rod is at lowest. \pause
+    \end{myitemize}
+    
+    So, for \emph{Max Speed}, we have to lower the $COM$ as most as possible. 
+    
+\end{frame}
+       
+\begin{frame}
+    {Problem 5: We need the speed at lowest possible point}
+    \sides{
+            We need the lowest position height first. 
+            \begin{myitemize}
+            \item At lowest, there we can see the rod is within $H-l$ region. 
+            \item The $COM$ is at the center of it, so, height of COM is, 
+                \[ h = \frac{H-l}{2} \]
+            \item The potential Energy at that lowest point is, 
+                \[ E_p = mg \frac{H-l }{2} \]
+                
+            \end{myitemize}
+            
+    }{
+    \draw{0.95}{prob5_2}{} 
+
+}
+\end{frame}
+    
+\begin{frame}
+    {Problem 5: Solving with energy}
+    \begin{itemize}
+        \item We had potential energy $mg \frac{H}{4}$ \pause
+        \item We reduced potential to $mg \frac{H-l}{2}$ \pause
+        \item Change of potential energy, 
+            \[ \Delta E_p =mg \frac{H}{4 } - mg \frac{H-l}{2} = mg \left( l - \frac{H}{2} \right)  \] \pause
+        \item Where this change go? It goes to increase kinetic energy. 
+            \[ \Delta E_k= \frac{1}{2} mv^2 - 0 = mg \left( l - \frac{H}{2} \right)  \]
+        
+    \end{itemize}
+    Solve this for $v$ and we have, 
+    \[ \boxed{ v = \sqrt{g \left(  l - \frac{H}{2} \right) } } \]
+    
+\end{frame}
+\begin{frame}
+    {Some extra on Potential Energy}
+    Remember this, \\
+    \emph{Potential Energy will appear if and only if there is a Force Field.}\\
+    And always keep this in mind that \textbf{Potential Energy is relative to position}. \\
+    What do I mean with this? 
+    \begin{itemize}
+        \item In gravity, if you pull something from the ground up, then some energy is used to pull it up. Where is that energy now? It is stored as Potential Energy. \pause
+        \item If you have a spring, and you push it, you need some energy to spend, where it goes? As elastic potential energy. \pause
+        \item In electric field, to move a  charge you need to put energy, that is stored as Potential energy in cases. 
+    \end{itemize}
+
+    If there is a force $\vec F_e$ from a field, then you have to put $- \vec F_e$ to move something against it. This force that you give requires you to spend energy. That spent energy is the work.
+    \[ \int -\vec F \cdot \mathrm d \vec x = W  \]
+    If this $F$ force is used against a sort of field, then this $W$ work can be stored as potential energy. So, 
+    \[ E_p = - \int \vec F \cdot \mathrm d \vec x  \]
+    
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+    {Chain rule}
+    \[ \frac{\mathrm{d} f}{\mathrm{d} x} = \frac{\mathrm{d} t}{\mathrm{d} x} \frac{\mathrm{d} f}{\mathrm{d} t} \]
+    if $f = f(t)$ and you need to solve for $\frac{\mathrm{d} f(t)}{\mathrm{d} x}$.
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}
+    {The Easy Analytical Mechanics Method}
+    \id{\begin{small} 
+        Total Energy in a system can be, 
+        \[ E = \frac{1}{2} \mathcal{M} v^2 + E_p \]
+        $E_p$ is the Potential depending on the system, gravity or anything else.
+        Let us take a differential, 
+        \[ \frac{\mathrm{d} }{\mathrm{d}  
+        t} E = \frac{1}{2} \mathcal{M } \frac{\mathrm{d}  }{\mathrm{d}  t} v^2 +
+    \frac{\mathrm{d} }{\mathrm{d}  t} E_p       \]
+    Now, \[ \frac{\mathrm{d} }{\mathrm{d} t} v^2 = \frac{\mathrm{d} v}{\mathrm{d} t} \frac{\mathrm{d} v^2}{\mathrm{d} v} = 2 a v \]
+    Now, if our potential energy is written with dependecy on $x$ coordinate, then, 
+    \[ \frac{\mathrm{d} }{\mathrm{d} t} E_p(x) = \frac{\mathrm{d} x}{\mathrm{d} t} \frac{\mathrm{d} E_p}{\mathrm{d} x} = v \frac{\mathrm{d} E_p}{\mathrm{d} x}  \]
+    
+    Hence, this equation solves to,
+    \[ 0 = \mathcal{M} av + v \frac{\mathrm{d} E_p}{\mathrm{d} x}      
+    \to
+\boxed{ 
+    a = - \frac{\frac{\mathrm{d} E_p}{\mathrm{d} x}}{\mathcal{M}} 
+    = - \frac{E_p'(x)}{\mathcal{ M}}
+}\]
+\end{small} 
+}       
+ 
+
+\end{frame}
+
+
+
+\begin{frame}
+    {Description of the Method}
+
+    \id{ For a position variable $x$ in  this case, 
+        \[ a = - \frac{E'_p(x)}{\mathcal{M}} \]
+    Here, $\mathcal{M} $ is the part of kinetic enregy if it can be written in the form $\frac{1}{2 } \mathcal{M} v^2$. $a$ is the acceleration. $E'_p(x)= \frac{\mathrm{d} E_p(x)}{\mathrm{d} x}$ derivative. We can find acceleration using Energy equation. Remember there can only be one variable, this case $x$. }
+\end{frame}
+
+
+
+
+\begin{frame}
+{Problem 1: LOL Again}
+
+    \prob{There is a system made of an incline with two masses attached with
+    string as shown. One is $m_1 $ another is $ m_2$, gravity works $\vec{g}$.
+\emph{Find the acceleration of both bodies  $m_1$ and $m_2$. }}  
+    
+    \draw{0.6}{prob1-1}{Problem 1 Diagram} 
+    
+\end{frame}
+
+
+\begin{frame}
+    {Problem 1: Using Energy Technic}
+    So, suppose the blocks move from their initial position. The $m_2$ moves along the ramp and the $m_1$ block comes down with $x$ distance. This will cause the $m_2$ to raise up in height too. 
+    \draw{0.5}{prob1-1}{} 
+\end{frame}
+
+
+\begin{frame}
+    {The Position Variable $x$.}
+    Now, for $x$ shift along height for $m_1$, the $m_2$ will gain some height along the ramp. So,
+
+        
+  
+    
+\end{frame}
+
+
+\begin{frame}
+    {Problem 1: Find the Energy exchange}
+    If $m_1$ comes down by $x$,then there is some potential energy by $m_1$ lost. \\
+    This potential energy will, 
+    \begin{itemize}
+        \item Increase Kinetic energy of both $m_1$ and $m_2$. \pause
+        \item Increase potential energy of $m_2$ by pulling it up $\Delta y = x \sin \alpha$. \pause
+        \item We cannot find any other source of energy. \pause
+    \end{itemize}
+   The equation, 
+   \[ \text{Energy lost by one} = \text{Energy gained by other parts} \]
+   \[ m_1 g x = \frac{1}{2 }\left( m_1 + m_2 \right) v^2 + mg \sin\alpha x  \]
+   
+\end{frame}
+
+
+\begin{frame}
+    {Problem 1: Taking the Derivative}
+    We will take derivative respect to time, 
+    \[ \frac{\mathrm{d} }{\mathrm{d} t} \left( m_1 g x \right)  
+    =
+\frac{\mathrm{d} }{\mathrm{d} t}\left( \frac{1}{2} \left( m_1 + m_2 \right) v^2 + mg \sin \alpha x \right)          \]
+This is, 
+\[ m_1 g v = \left( m_1 +m_2  \right) v a + m_2 g \sin \alpha v \]
+Factor off $v$ and solve for acceleration $a$, that gives, 
+\[ \boxed{a = \frac{g \left( m_1 - m_2 \sin \alpha \right) }{m_1 + m_2}} \]
+Weirdly this result is correct.
+\end{frame}
+    
+
+
+\begin{frame}
+    {Problem 1: With friction}
+This equation will work assuming $m_1$ gets down.    \[ \text{Energy lost} = \text{Energy gained by other parts of same system} \]
+So, this equation is now, 
+\[ m_1 g x = \frac{1}{2 } \left( m_1 + m_2 \right)  v^2 + m_2 g \cos \alpha x + m_2 g \sin x \]
+
+\[ \frac{\mathrm{d} }{\mathrm{d} t} (m_1 g x) = \frac{\mathrm{d} }{\mathrm{d} t} \left(\frac{1}{2 } \left( m_1 + m_2 \right)  v^2 + m_2 g \mu \cos \alpha x + m_2 g \sin x \right) \]
+   This solves similary, 
+   
+\[ \boxed{a = \frac{g \left( m_1 - m_2 \sin \alpha  - m_2 \mu \cos \alpha \right) }{m_1 + m_2}} \] 
+This can be done the same with $m_1$ towing up.
+\end{frame}
+
+\begin{frame}
+    {The most powerful method of Mechanics}
+    \id{This idea of Using Analytical Mechanics (taking derivative of Energy keeping a variable) is the most useful technique in case of complex mechanical systems)}
+\end{frame}
+
+
+
+\begin{frame}
+    {But why this Energy Technique Works?}
+    Sneak peek to the inside of the thing. 
+    \\
+    So, the basic reason for this is that, you know, that for force case, we can solve it just using force balances and using $F=ma$. But in case of energy, 
+    you know that, $\int F \cdot dx = W$. 
+    \\
+    In case of Energy, we are considering the integral of forces respect to $x$. 
+    \\
+    And when we differenciate the energy, we are left with force again. 
+    
+\end{frame}
+\begin{frame}
+    {Why will you use Energy Technique of doing when you already have $\vec F = m \vec a$?
+    }
+    \begin{itemize}
+        \item Energy method is much more straightforward in almost $\frac{1}{2}$ of the cases than $\vec F$ force balance. \pause
+        \item All you need to do is correctly find the energy and just differenciate it without any further thinking. \pause
+        \item In case of $\vec F$ force method, you need to do intense geometry, some times, and need to solve a system of equations. 
+            You don't need to do this in Energy technique.
+    \end{itemize}
+\end{frame}
+ 
+\begin{frame}
+    {Further Referance to Energy Method}
+    \begin{myitemize}
+    \item Analytical Mechanics \pause
+    \item Lagrangian 
+        \begin{itemize}
+            \item Euler Lagrangian equation.
+        \end{itemize}
+    \end{myitemize}
+    
+\end{frame}
+
+\begin{frame}
+    {Problem 2: Again, but using Ninja technique}
+    \sides{
+    Find stable position.}{\draw{0.9}{prob2_1}{}}
+\end{frame}
+
+\begin{frame}
+    {We are going to write the total energy, and it's constant, and that's the trick}
+    \sides{ 
+        \[ E = \frac{1}{2} m v_{rot}^2 + \frac{1}{2} mv_{\text{along circle} } ^2 - mg R \cos \theta   \]
+         Please note, we are going to consider the horizontal line containing circle center to be $V = 0$, to it's relative
+     we will measure the potential energy. So, below it potential energy is negative, so we take negetive.} %
+     { \draw{0.9}{prob2_1}{}}
+\end{frame}
+
+\begin{frame}
+    {Problem 2: Solution}
+    Here, look that $\theta$ can change. And and $\frac{\mathrm{d} }{\mathrm{d} t} \theta = \Omega$ 
+    \draw{0.6}{prob2_2}{}
+\end{frame}
+
+\begin{frame}
+    {Problem 2}
+    Total energy using only 1 variable, 
+    \[ E = \frac{1}{2 } m \left( R \sin \theta \omega \right)^2 + \frac{1}{2} m \left( R \Omega \right) ^2  - mg R \cos \theta  \]
+Now in previous Idea I talked about this form, 
+\[ E = \frac{1}{2} \mathcal{M} v^2 + V(x) \]
+Where $V$ is not always potential too. It can be anything that depends on $x$ (not $\frac{\mathrm{d} }{\mathrm{d} t} x$. 
+So, to write in this special form, note, we have,
+\[ E = \frac{1}{2} m R^2 \Omega^2 + \left( \frac{1}{2}m R^2 \omega ^2 \sin \theta ^2 - 
+mg R \cos \theta \right) \]
+Now, we can show, 
+\[ \frac{\mathrm{d} ^2}{\mathrm{d} t^2} \theta = \frac{- V'(\theta)}{\mathcal{M}} \]
+Derivative of $V(x)$ is needed. 
+\end{frame}
+
+\begin{frame}
+    {Problem 2}
+    Here, our $V(\theta)$ is, 
+    \[ V(\theta) = \frac{1}{2} m R^2 \omega ^2 \sin^2\theta - mg R \cos \theta \]
+    Derivative,
+    \[ V'(\theta) = \frac{\mathrm{d} V(\theta)}{\mathrm{d} \theta} =
+    mR^2 \omega^2 \sin \theta \cos \theta + mg R \cos\theta  \]
+    
+\end{frame}
+
+\begin{frame}
+    {Problem 2}
+    The kinetic energy was to be shown in $\frac{1}{2} \mathcal{M} v^2$, it is,
+    \[ \mathcal{M} = mR^2 \]
+    We need this form. 
+\end{frame}
+
+\begin{frame}
+    Now, we were told, 
+    \[ \frac{\mathrm{d} ^2 \theta}{\mathrm{d} t^2}= -
+    \frac{V'(\theta) }{\mathcal{M}}\]
+    So, 
+    \[ \frac{\mathrm{d} ^2 \theta}{\mathrm{d} t^2} =
+    - \frac{mR^2 \omega^2 \sin \theta \cos \theta + mgR \cos \theta }{mR^2}\]
+   \pause
+  { \[ \frac{\mathrm{d} ^2 \theta }{\mathrm{d} t^2} = -
+  \omega^2 \sin \theta \cos \theta - \frac{g}{R} \cos \theta \]}
+   \pause
+   When there is no force $F =0$, then $a=0$, acceleration is obviously zero. So, for stability, $\frac{\mathrm{d} ^2 \theta}{\mathrm{d}  t^2} = 0$, although we have to be careful making this assumption. 
+    \[  \omega^2 \sin \theta \cos \theta = \frac{g}{R} \cos \theta \]
+    \[ \boxed{ \cos \theta = \frac{g}{\omega^2 R} }\]
+   
+   
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

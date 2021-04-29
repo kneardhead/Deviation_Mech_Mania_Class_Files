@@ -1,0 +1,8 @@
+1) Introduce force balance rules of mechanics, basic idea.
+2) How to use ideas that generate from these to solve problems.
+|
+|___3) Conservation laws 
+|___4) Energy technique (method 6) 
+
+
+
