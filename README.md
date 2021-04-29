@@ -15,13 +15,13 @@ day1.tex  day2.tex  day3.tex
 ```
 And do the required writing. So this github repo is quite messy. 
 
-##Day 1: Using Force as Vectors 
+## Day 1: Using Force as Vectors 
 Talks about solving problems using Force as vectors, nothing great, just using sin and cos to balance forces and find equations to solve variables. 
 
-##Day 2: Using Conservation Laws
+## Day 2: Using Conservation Laws
 Momentum and Energy, importantly includes Jaan Kalda Mechanics Method 6, which talks about Generalized Coordinates (motivates Analytical Mechanics) and some low depth analysis that will help out solving some good problems.
 
-##Day 3: Extra
+## Day 3: Extra
 I discussed things I thought would be more necessary and solved some more problems so that the pupil could relate with the last 2 days. 
 
 The biggest takeaway from the interaction was discussions of good problems solvings, law of physics, and at day 3, you guessed, Linux. xD 
